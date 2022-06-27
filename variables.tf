@@ -13,9 +13,7 @@ variable "tags" {
 variable "location" {
   description = "The location to host resources"
   type        = string
-  default     = "eastus"
 }
-
 
 # Helm
 
@@ -42,7 +40,6 @@ variable "chart_values" {
   type        = string
   default     = ""
 }
-
 
 # Postgres
 variable "postgres_server_version" {
@@ -79,7 +76,6 @@ variable "postgres_firewall_rules" {
   default = []
 }
 
-
 # AKS
 variable "kubernetes_version" {
   description = "Specify which Kubernetes release to use. The default used is the latest Kubernetes version available in the region"
@@ -105,7 +101,6 @@ variable "kubernetes_enable_host_encryption" {
   default     = false
 }
 
-
 variable "kubernetes_sku_tier" {
   description = "The SKU Tier that should be used for this Kubernetes Cluster. Possible values are Free and Paid"
   type        = string
@@ -116,16 +111,4 @@ variable "kubernetes_private_cluster_enabled" {
   description = "If true cluster API server will be exposed only on internal IP address and available only in cluster vnet."
   type        = bool
   default     = false
-}
-
-variable "kubernetes_client_id" {
-  description = "(Optional) The Client ID (appId) for the Service Principal used for the AKS deployment"
-  type        = string
-  default     = ""
-}
-
-variable "kubernetes_client_secret" {
-  description = "(Optional) The Client Secret (password) for the Service Principal used for the AKS deployment"
-  type        = string
-  default     = ""
 }
