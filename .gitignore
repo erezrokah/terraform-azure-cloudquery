@@ -39,3 +39,5 @@ DockerfileTmp*
 cloudquery.log
 
 .idea
+
+private-ssh-key

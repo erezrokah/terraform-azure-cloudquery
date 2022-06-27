@@ -57,70 +57,75 @@ variable "postgres_sku_name" {
   default     = "GP_Gen5_2"
 }
 
-variable "publicly_accessible" {
+variable "postgres_publicly_accessible" {
   description = "Make Postgres publicly accessible (might be needed if you want to connect to it from Grafana or other tools)."
   type        = bool
   default     = false
 }
 
-variable "backup_retention_days" {
+variable "postgres_backup_retention_days" {
   description = "Retention days for backup"
   type        = number
   default     = 7
 }
 
+variable "postgres_firewall_rules" {
+  description = "If Postgres is publicly accessible you will need to specified a firewall rule to allow connections"
+  type        = list(object({
+    name     = string
+    start_ip = string
+    end_ip   = string
+  }))
+  default = []
+}
+
 
 # AKS
-variable "node_disk_size_gb" {
+variable "kubernetes_version" {
+  description = "Specify which Kubernetes release to use. The default used is the latest Kubernetes version available in the region"
+  type        = string
+  default     = "1.23.5"
+}
+
+variable "kubernetes_orchestrator_version" {
+  description = "Specify which Kubernetes release to use for the orchestration layer. The default used is the latest Kubernetes version available in the region"
+  type        = string
+  default     = "1.23.5"
+}
+
+variable "kubernetes_node_disk_size_gb" {
   description = "Node disk size in gb."
   type        = number
   default     = 30
 }
 
-variable "enable_host_encryption" {
+variable "kubernetes_enable_host_encryption" {
   description = "Enable Host Encryption for default node pool. Encryption at host feature must be enabled on the subscription: https://docs.microsoft.com/azure/virtual-machines/linux/disks-enable-host-based-encryption-cli"
   type        = bool
   default     = false
 }
 
 
-#variable "allowed_cidr_blocks" {
-#  description = "If RDS is publicly accessible it is highly advised to specify allowed cidrs from where you are planning to connect"
-#  type        = list(string)
-#  default     = []
-#}
+variable "kubernetes_sku_tier" {
+  description = "The SKU Tier that should be used for this Kubernetes Cluster. Possible values are Free and Paid"
+  type        = string
+  default     = "Free"
+}
 
-#variable "project_id" {
-#  description = "The ID of the project in which resources will be provisioned."
-#  type        = string
-#}
-#
+variable "kubernetes_private_cluster_enabled" {
+  description = "If true cluster API server will be exposed only on internal IP address and available only in cluster vnet."
+  type        = bool
+  default     = false
+}
 
+variable "kubernetes_client_id" {
+  description = "(Optional) The Client ID (appId) for the Service Principal used for the AKS deployment"
+  type        = string
+  default     = ""
+}
 
-#variable "zones" {
-#  type        = list(string)
-#  description = "The zone to host the cluster in (required if is a zonal cluster), by default will pick one of the zones in the region"
-#  default     = []
-#}
-#
-#variable "gke_version" {
-#  type        = string
-#  description = "Version` of GKE to use for the GitLab cluster"
-#  default     = "1.21"
-#}
-#
-#variable "machine_type" {
-#  type        = string
-#  description = "Machine type to use for the cluster"
-#  default     = "n2-highcpu-4"
-#}
-#
-#variable "authorized_networks" {
-#  description = "If Cloud SQL accessible it is highly advised to specify allowed cidrs from where you are planning to connect"
-#  type        = list(map(string))
-#  default     = []
-#  # For public use
-#  # [{name = "public", value = "0.0.0.0/0"}]
-#}
-#
-#
+variable "kubernetes_client_secret" {
+  description = "(Optional) The Client Secret (password) for the Service Principal used for the AKS deployment"
+  type        = string
+  default     = ""
+}

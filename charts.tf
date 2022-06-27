@@ -1,6 +1,6 @@
-####################
-## Helm Chart
-####################
+#####################
+### Helm Chart
+#####################
 provider "helm" {
   kubernetes {
     host                   = module.aks.host

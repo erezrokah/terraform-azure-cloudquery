@@ -11,10 +11,10 @@ module "cloudquery" {
 
   # Name to use on all resources created
   name = "cq-complete-ex"
-  location = "East US"
+  location = "eastus"
 
   config_file = "config.hcl"
-  #  publicly_accessible = true
+  postgres_publicly_accessible = true
   #  install_helm_chart = false
 
 
