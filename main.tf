@@ -42,7 +42,7 @@ module "network" {
   resource_group_name = azurerm_resource_group.rg.name
   address_space       = "10.10.0.0/16"
   subnet_prefixes     = ["10.10.1.0/24", "10.10.2.0/24", "10.10.3.0/24"]
-  subnet_names        = [
+  subnet_names = [
     "${module.naming.subnet.name}-1",
     "${module.naming.subnet.name}-2",
     "${module.naming.subnet.name}-3"
@@ -148,7 +148,7 @@ module "postgresql" {
   firewall_rules       = var.postgres_firewall_rules
 
   vnet_rule_name_prefix = module.naming.postgresql_virtual_network_rule.name
-  vnet_rules            = var.postgres_publicly_accessible ? [
+  vnet_rules = var.postgres_publicly_accessible ? [
     {
       name      = "${module.naming.subnet.name}-1",
       subnet_id = module.network.vnet_subnets[0]

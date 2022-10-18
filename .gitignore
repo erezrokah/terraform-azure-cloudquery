@@ -1,5 +1,5 @@
 # Local .terraform directories
-examples/complete/.terraform/*
+**/.terraform/*
 
 # Terraform lockfile
 .terraform.lock.hcl
@@ -38,6 +38,4 @@ DockerfileTmp*
 .cq
 cloudquery.log
 
-.idea
-
-private-ssh-key
+.vscode

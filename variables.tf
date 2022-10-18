@@ -68,7 +68,7 @@ variable "postgres_backup_retention_days" {
 
 variable "postgres_firewall_rules" {
   description = "If Postgres is publicly accessible you will need to specified a firewall rule to allow connections"
-  type        = list(object({
+  type = list(object({
     name     = string
     start_ip = string
     end_ip   = string
