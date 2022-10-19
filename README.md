@@ -54,7 +54,7 @@ TDB
 | Name | Source | Version |
 |------|--------|---------|
 | <a name="module_aks"></a> [aks](#module\_aks) | github.com/Azure/terraform-azurerm-aks | 6.2.0 |
-| <a name="module_naming"></a> [naming](#module\_naming) | Azure/naming/azurerm | ~> 0.1.1 |
+| <a name="module_naming"></a> [naming](#module\_naming) | Azure/naming/azurerm | ~> 0.2.0 |
 | <a name="module_network"></a> [network](#module\_network) | Azure/network/azurerm | ~> 3.5.0 |
 | <a name="module_postgresql"></a> [postgresql](#module\_postgresql) | github.com/Azure/terraform-azurerm-postgresql | 0f607dbc9d08528bb16a48fc9dc8831aa4a92f5c |
 
