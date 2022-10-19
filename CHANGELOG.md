@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.0.5](https://github.com/cloudquery/terraform-azure-cloudquery/compare/v1.0.4...v1.0.5) (2022-10-19)
+
+
+### Bug Fixes
+
+* **deps:** Update Terraform Azure/naming/azurerm to ~> 0.2.0 ([#8](https://github.com/cloudquery/terraform-azure-cloudquery/issues/8)) ([dd11f22](https://github.com/cloudquery/terraform-azure-cloudquery/commit/dd11f225cf466ef971118fc1778248525b4b7640))
+
 ## [1.0.4](https://github.com/cloudquery/terraform-azure-cloudquery/compare/v1.0.3...v1.0.4) (2022-10-19)
 
 
