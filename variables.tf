@@ -26,7 +26,7 @@ variable "install_helm_chart" {
 variable "chart_version" {
   description = "The version of CloudQuery helm chart"
   type        = string
-  default     = "0.2.6" # Do not change CloudQuery helm chart version as it is automatically updated by Workflow
+  default     = "1.0.5" # Do not change CloudQuery helm chart version as it is automatically updated by Workflow
 }
 
 variable "config_file" {
@@ -68,7 +68,7 @@ variable "postgres_backup_retention_days" {
 
 variable "postgres_firewall_rules" {
   description = "If Postgres is publicly accessible you will need to specified a firewall rule to allow connections"
-  type        = list(object({
+  type = list(object({
     name     = string
     start_ip = string
     end_ip   = string

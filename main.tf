@@ -42,7 +42,7 @@ module "network" {
   resource_group_name = azurerm_resource_group.rg.name
   address_space       = "10.10.0.0/16"
   subnet_prefixes     = ["10.10.1.0/24", "10.10.2.0/24", "10.10.3.0/24"]
-  subnet_names        = [
+  subnet_names = [
     "${module.naming.subnet.name}-1",
     "${module.naming.subnet.name}-2",
     "${module.naming.subnet.name}-3"
@@ -62,32 +62,30 @@ module "network" {
 ## AKS
 ####################
 module "aks" {
-  source = "./modules/aks"
+  source = "github.com/Azure/terraform-azurerm-aks?ref=6.2.0"
 
   resource_group_name = azurerm_resource_group.rg.name
 
   kubernetes_version   = var.kubernetes_version
   orchestrator_version = var.kubernetes_orchestrator_version
 
-  prefix           = var.name
-  cluster_name     = module.naming.kubernetes_cluster.name
-  cluster_location = azurerm_resource_group.rg.location
-  network_plugin   = "azure"
-  vnet_subnet_id   = element(module.network.vnet_subnets, 0)
-  os_disk_size_gb  = var.kubernetes_node_disk_size_gb
-  sku_tier         = var.kubernetes_sku_tier
+  prefix          = var.name
+  cluster_name    = module.naming.kubernetes_cluster.name
+  network_plugin  = "azure"
+  vnet_subnet_id  = element(module.network.vnet_subnets, 0)
+  os_disk_size_gb = var.kubernetes_node_disk_size_gb
+  sku_tier        = var.kubernetes_sku_tier
 
   rbac_aad_managed = false
 
-  enable_log_analytics_workspace   = false
-  enable_role_based_access_control = false
+  log_analytics_workspace_enabled   = false
+  role_based_access_control_enabled = false
 
-  private_cluster_enabled         = var.kubernetes_private_cluster_enabled
-  enable_http_application_routing = true
-  enable_azure_policy             = true
-  enable_auto_scaling             = true
-  enable_kube_dashboard           = false
-  enable_host_encryption          = var.kubernetes_enable_host_encryption
+  private_cluster_enabled          = var.kubernetes_private_cluster_enabled
+  http_application_routing_enabled = true
+  azure_policy_enabled             = true
+  enable_auto_scaling              = true
+  enable_host_encryption           = var.kubernetes_enable_host_encryption
 
   agents_min_count = 1
   agents_max_count = 2
@@ -111,8 +109,8 @@ module "aks" {
 
   tags = local.tags
 
-  enable_ingress_application_gateway = false
-  network_policy                     = "azure"
+  ingress_application_gateway_enabled = false
+  network_policy                      = "azure"
 
   depends_on = [azurerm_resource_group.rg, module.network]
 }
@@ -126,7 +124,7 @@ resource "random_password" "postgresql" {
 }
 
 module "postgresql" {
-  source = "github.com/Azure/terraform-azurerm-postgresql"
+  source = "github.com/Azure/terraform-azurerm-postgresql?ref=0f607dbc9d08528bb16a48fc9dc8831aa4a92f5c"
 
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
@@ -148,7 +146,7 @@ module "postgresql" {
   firewall_rules       = var.postgres_firewall_rules
 
   vnet_rule_name_prefix = module.naming.postgresql_virtual_network_rule.name
-  vnet_rules            = var.postgres_publicly_accessible ? [
+  vnet_rules = var.postgres_publicly_accessible ? [
     {
       name      = "${module.naming.subnet.name}-1",
       subnet_id = module.network.vnet_subnets[0]

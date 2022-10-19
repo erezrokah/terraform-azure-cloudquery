@@ -26,11 +26,11 @@ serviceAccount:
   annotations:
     "azure.workload.identity/tenant-id": ${data.azurerm_client_config.current.tenant_id}
 envRenderSecret:
-  "CQ_VAR_DSN": "${azurerm_key_vault_secret.pg_dsn.value}"
+  "CQ_DSN": "${azurerm_key_vault_secret.pg_dsn.value}"
 config: |
   ${indent(2, file(var.config_file))}
 EOT
-  ,
+    ,
     var.chart_values
   ]
 

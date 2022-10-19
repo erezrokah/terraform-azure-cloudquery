@@ -10,10 +10,10 @@ module "cloudquery" {
   source = "../../"
 
   # Name to use on all resources created
-  name = "cq-complete-ex"
+  name     = "cq-complete-ex"
   location = "eastus"
 
-  config_file = "config.hcl"
+  config_file                  = "config.yml"
   postgres_publicly_accessible = true
   #  install_helm_chart = false
 
