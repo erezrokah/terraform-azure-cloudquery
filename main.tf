@@ -35,7 +35,7 @@ resource "azurerm_resource_group" "rg" {
 ####################
 module "network" {
   source  = "Azure/network/azurerm"
-  version = "~> 3.5.0"
+  version = "~> 5.3.0"
 
   vnet_name = module.naming.virtual_network.name
 
