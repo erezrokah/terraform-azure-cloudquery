@@ -62,7 +62,7 @@ module "network" {
 ## AKS
 ####################
 module "aks" {
-  source = "github.com/Azure/terraform-azurerm-aks?ref=6.2.0"
+  source = "github.com/Azure/terraform-azurerm-aks?ref=6.8.0"
 
   resource_group_name = azurerm_resource_group.rg.name
 
