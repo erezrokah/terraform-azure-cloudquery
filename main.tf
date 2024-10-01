@@ -124,7 +124,7 @@ resource "random_password" "postgresql" {
 }
 
 module "postgresql" {
-  source = "github.com/Azure/terraform-azurerm-postgresql?ref=0f607dbc9d08528bb16a48fc9dc8831aa4a92f5c"
+  source = "github.com/Azure/terraform-azurerm-postgresql?ref=3.2.0"
 
   resource_group_name = azurerm_resource_group.rg.name
   location            = azurerm_resource_group.rg.location
